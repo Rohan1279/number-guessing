@@ -18,7 +18,7 @@ export default function GameScreen({ userNumber }) {
     <View style={styles.screen}>
       <Title>Opponent's Guess</Title>
       <NumberContainer>{currentGuess}</NumberContainer>
-      {/* GUESS */}
+
       <View>
         <Text>Higher or lower?</Text>
         {/*  +  - */}
