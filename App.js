@@ -4,12 +4,16 @@ import { LinearGradient } from "expo-linear-gradient";
 import StartGameScreen from "./screens/StartGameScreen";
 import GameScreen from "./screens/GameScreen";
 import { useState } from "react";
+import GameOverScreen from "./screens/GameOverScreen";
 
 export default function App() {
   const [userNumber, setUserNumber] = useState(null);
   const pickedNumberHandler = (pickedNumber) => {
     setUserNumber(pickedNumber);
+    setGameIsOver(false);
   };
+
+  const [gameIsOver, setGameIsOver] = useState(false);
   return (
     <LinearGradient colors={["#4e0329", "#ddb52f"]} style={styles.rootScreen}>
       <StatusBar style="light" />
@@ -21,13 +25,26 @@ export default function App() {
         style={{ flex: 1 }}
         imageStyle={{ opacity: 0.45 }}
       >
-        {/* <SafeAreaView style={styles.rootScreen}> */}
-        {userNumber ? (
-          <GameScreen userNumber={userNumber} />
+        <SafeAreaView style={styles.rootScreen}>
+          {!gameIsOver ? (
+            userNumber ? (
+              <GameScreen
+                userNumber={userNumber}
+                setGameIsOver={setGameIsOver}
+              />
+            ) : (
+              <StartGameScreen pickedNumberHandler={pickedNumberHandler} />
+            )
+          ) : (
+            <GameOverScreen />
+          )}
+          {/* {userNumber ? (
+          <GameScreen userNumber={userNumber} setGameIsOver={setGameIsOver} />
         ) : (
           <StartGameScreen pickedNumberHandler={pickedNumberHandler} />
         )}
-        {/* </SafeAreaView> */}
+        {gameIsOver && userNumber && <GameOverScreen />} */}
+        </SafeAreaView>
       </ImageBackground>
     </LinearGradient>
   );
