@@ -3,7 +3,9 @@ import { useEffect, useState } from "react";
 import Title from "../components/ui/Title";
 import NumberContainer from "../components/game/NumberContainer";
 import PrimaryButton from "../components/ui/PrimaryButton";
-
+import Card from "../components/ui/Card";
+import InstructionText from "../components/ui/InstructionText";
+import {} from "@expo/vector-icons";
 const generateRandomBetween = (min, max, exclude) => {
   const rndNum = Math.floor(Math.random() * (max - min)) + min;
   if (rndNum === exclude) {
@@ -50,17 +52,23 @@ export default function GameScreen({ userNumber, setGameIsOver }) {
     <View style={styles.screen}>
       <Title>Opponent's Guess</Title>
       <NumberContainer>{currentGuess}</NumberContainer>
-      <View>
-        <Text>Higher or lower?</Text>
-        <View>
-          <PrimaryButton pressHandler={() => nextGuessHandler("lower")}>
-            -
-          </PrimaryButton>
-          <PrimaryButton pressHandler={() => nextGuessHandler("greater")}>
-            +
-          </PrimaryButton>
+      <Card>
+        <InstructionText style={styles.instructionText}>
+          Higher or lower?
+        </InstructionText>
+        <View style={{ flexDirection: "row" }}>
+          <View style={styles.buttons}>
+            <PrimaryButton pressHandler={() => nextGuessHandler("lower")}>
+              -
+            </PrimaryButton>
+          </View>
+          <View style={styles.buttons}>
+            <PrimaryButton pressHandler={() => nextGuessHandler("greater")}>
+              +
+            </PrimaryButton>
+          </View>
         </View>
-      </View>
+      </Card>
     </View>
   );
 }
@@ -69,5 +77,13 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     padding: 24,
+  },
+  buttons: {
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  instructionText: {
+    marginBottom: 12,
+    color: "#aab52f",
   },
 });
