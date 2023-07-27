@@ -13,6 +13,7 @@ export default function App() {
     "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf"),
   });
   const [userNumber, setUserNumber] = useState(null);
+  const [totalGuessRounds, setTotalGuessRounds] = useState(0);
   const pickedNumberHandler = (pickedNumber) => {
     setUserNumber(pickedNumber);
     setGameIsOver(false);
@@ -22,6 +23,11 @@ export default function App() {
   if (!fontsLoaded) {
     return <AppLoading />;
   }
+  handleNewGame = () => {
+    setUserNumber(null);
+    setTotalGuessRounds(0);
+    setGameIsOver(false);
+  };
   return (
     <LinearGradient colors={["#4e0329", "#ddb52f"]} style={styles.rootScreen}>
       <StatusBar style="light" />
@@ -39,12 +45,17 @@ export default function App() {
               <GameScreen
                 userNumber={userNumber}
                 setGameIsOver={setGameIsOver}
+                setTotalGuessRounds={setTotalGuessRounds}
               />
             ) : (
               <StartGameScreen pickedNumberHandler={pickedNumberHandler} />
             )
           ) : (
-            <GameOverScreen />
+            <GameOverScreen
+              userNumber={userNumber}
+              roundsNumber={totalGuessRounds}
+              handleNewGame={handleNewGame}
+            />
           )}
           {/* {userNumber ? (
           <GameScreen userNumber={userNumber} setGameIsOver={setGameIsOver} />

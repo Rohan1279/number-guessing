@@ -3,7 +3,11 @@ import { Text } from "react-native";
 import Title from "../components/ui/Title";
 import PrimaryButton from "../components/ui/PrimaryButton";
 
-export default function GameOverScreen() {
+export default function GameOverScreen({
+  roundsNumber,
+  userNumber,
+  handleNewGame,
+}) {
   return (
     <View
       style={{
@@ -43,10 +47,16 @@ export default function GameOverScreen() {
           marginBottom: 20,
         }}
       >
-        Your phone needed <Text style={{ color: "red" }}>0</Text> rounds to
-        guess the number <Text style={{ color: "red" }}>0</Text>
+        Your phone needed{" "}
+        <Text style={{ color: "#4e0329", fontFamily: "open-sans-bold" }}>
+          {roundsNumber}
+        </Text>{" "}
+        rounds to guess the number{" "}
+        <Text style={{ color: "#4e0329", fontFamily: "open-sans-bold" }}>
+          {userNumber}
+        </Text>
       </Text>
-      <PrimaryButton>
+      <PrimaryButton pressHandler={handleNewGame}>
         <Text style={{ color: "white" }}>NEW GAME</Text>
       </PrimaryButton>
     </View>
