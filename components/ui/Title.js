@@ -4,8 +4,8 @@ export default function Title({ children }) {
   return (
     <Text
       style={{
+        fontFamily: "open-sans-bold",
         fontSize: 24,
-        fontWeight: "bold",
         color: "white",
         textAlign: "center",
         borderWidth: 2,
