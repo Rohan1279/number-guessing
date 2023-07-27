@@ -30,7 +30,7 @@ export default function App() {
           uri: "https://images.unsplash.com/photo-1570303345338-e1f0eddf4946?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZGljZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
         }}
         resizeMode="cover"
-        style={{ flex: 1, padding: 50 }}
+        style={{ flex: 1, paddingVertical: 50 }}
         imageStyle={{ opacity: 0.45 }}
       >
         <SafeAreaView style={styles.rootScreen}>
